@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{animate}
+\usepackage{hyperref}
+
+\title{Problema de Satélite Terrestre}
+\author{David Guadalupe Esquila}
+\date{\today}
+
+% Colores para coincidir con la animación
+\definecolor{earthblue}{RGB}{31, 163, 236}
+\definecolor{orbitred}{RGB}{255, 0, 0}
+\definecolor{orbitblue}{RGB}{0, 0, 255}
+
+\begin{document}
+
+\maketitle
+
+\section{Enunciado del Problema}
+
+Un satélite terrestre de masa $m = \SI{1000}{\kg}$ tiene un momento angular $L = m\sqrt{2GMR}$, donde $R = \SI{6.4e6}{\m}$ es el radio terrestre y $GM = gR^2$ con $g = \SI{9.81}{\m/\s^2}$.
+
+Se pide:
+\begin{enumerate}
+    \item[C)] Determinar la energía específica $E_0$ para órbita circular y su radio $R_0$
+    \item[D)] Para $E = \frac{8}{9}E_0$, calcular:
+    \begin{itemize}
+        \item Los ápsides (perigeo y apogeo)
+        \item Velocidades en los extremos
+    \end{itemize}
+    \item[E)] Representación gráfica de las órbitas
+\end{enumerate}
+
+\section{Solución}
+
+\subsection{Parte C: Órbita Circular}
+
+\begin{align*}
+L &= m\sqrt{GMr_0} = m\sqrt{2GMR} \\
+\Rightarrow r_0 &= 2R = \SI{12.8e6}{\m} \\
+E_0 &= -\frac{GMm}{2r_0} = -\frac{gRm}{4} \\
+&= -\frac{(9.81)(6.4\times10^6)(1000)}{4} \\
+&= \boxed{\SI{-1.5696e10}{\joule}}
+\end{align*}
+
+\subsection{Parte D: Órbita Elíptica}
+
+\subsubsection{Ápsides}
+
+\begin{align*}
+E &= \frac{8}{9}E_0 = -\frac{2gRm}{9} \\
+\epsilon &= \sqrt{1 + \frac{2EL^2}{G^2M^2m^3}} = \frac{1}{3} \\
+r(\theta) &= \frac{2R}{1 + \frac{1}{3}\cos\theta} \\
+\text{Perigeo} &= \left.\frac{2R}{1+\epsilon}\right|_{\theta=0} = 1.5R = \boxed{\SI{9.6e6}{\m}} \\
+\text{Apogeo} &= \left.\frac{2R}{1-\epsilon}\right|_{\theta=\pi} = 3R = \boxed{\SI{19.2e6}{\m}}
+\end{align*}
+
+\subsubsection{Velocidades}
+
+Conservación de energía:
+\[ E = \frac{1}{2}mv^2 - \frac{GMm}{r} \]
+
+\begin{itemize}
+\item En perigeo ($r = 1.5R$):
+\[ v_p = \sqrt{\frac{8gR}{9}} \approx \boxed{\SI{7470}{\m/\s}} \]
+
+\item En apogeo ($r = 3R$):
+\[ v_a = \sqrt{\frac{2gR}{9}} \approx \boxed{\SI{3735}{\m/\s}} \]
+\end{itemize}
+
+\section{Visualizaciones}
+
+\subsection{Diagrama de Órbitas}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{orbitas.png}
+\caption{Comparación de órbitas (circular en \textcolor{orbitred}{rojo}, elíptica en \textcolor{orbitblue}{azul}) con la Tierra (\textcolor{earthblue}{azul claro}) en el centro. Escala en radios terrestres.}
+\label{fig:orbitas}
+\end{figure}
+
+\subsection{Animación}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{orbit_animation.gif}
+\caption{Animación del movimiento orbital. Descargar el PDF para ver la animación interactiva.}
+\label{fig:animacion}
+\end{figure}
+
+\paragraph{Nota:} En Overleaf, la animación GIF se muestra como imagen estática. Para verla en acción:
+\begin{enumerate}
+\item Descargar el PDF y abrirlo con Adobe Reader
+\item O compilar localmente con el paquete \texttt{animate}
+\end{enumerate}
+
+\section{Código Python}
+
+El código completo para generar estas visualizaciones está disponible en el archivo adjunto \texttt{orbita\_satelite.py} en el proyecto de Overleaf.
+
+\end{document}
