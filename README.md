@@ -33,3 +33,5 @@ L &= m\sqrt{2GMR} \\
 E_0 &= -\frac{GMm}{4R} \\
 \epsilon &= \sqrt{1 + \frac{2EL^2}{G^2M^2m^3}}
 \end{aligned}
+
+
